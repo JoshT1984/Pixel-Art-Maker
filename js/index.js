@@ -5,6 +5,8 @@ insideContainer.append(canvas);
 let canvasWidth = canvas.offsetWidth * 1.81;
 let canvasHeight = canvas.offsetHeight * 1.81;
 let pixelGrid;
+let pixelArray = [];
+
 render();
 
 function render() {
@@ -20,10 +22,9 @@ function makeGridLines() {
     }
   }
 }
-
-// let drawPixels = document.querySelectorAll(".pixels");
-// let drawPixels = document.querySelectorAll(".pixels");
-
-drawPixels.addEventListener("click", (e) => {
-  pixelGrid.style.backgroundColor = "black";
+let allPixels = document.querySelectorAll(".pixels");
+allPixels.forEach((pixel) => {
+  pixel.addEventListener("mousedown", () =>
+    pixel.classList.toggle("isClicked")
+  );
 });

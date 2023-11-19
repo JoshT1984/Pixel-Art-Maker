@@ -4,6 +4,7 @@ canvas.className = "canvas";
 insideContainer.append(canvas);
 let canvasWidth = canvas.offsetWidth * 1.81;
 let canvasHeight = canvas.offsetHeight * 1.81;
+let canvasColor = "_0";
 
 let isDrawing = false;
 window.addEventListener("pointerdown", () => {
@@ -19,13 +20,14 @@ function render() {
   makeGridLines();
   makePixels();
   makeSquarePaintPalette();
+  changeDrawColor();
 }
 function makeGridLines() {
   let pixelGrid;
 
   for (let i = 0; i < canvasWidth - 131; i++) {
     pixelGrid = document.createElement("div");
-    pixelGrid.classList.add("pixels");
+    pixelGrid.setAttribute("id", "pixels");
 
     for (let j = 0; j < canvasHeight; j++) {
       canvas.append(pixelGrid);
@@ -34,17 +36,19 @@ function makeGridLines() {
 }
 
 function makePixels() {
-  let clickedPixels = document.querySelectorAll(".pixels");
+  let clickedPixels = document.querySelectorAll("#pixels");
   clickedPixels.forEach((pixel) => {
     pixel.addEventListener("mousedown", () => {
-      pixel.classList.add("isClicked");
+      pixel.className = canvasColor;
+      pixel.style.opacity = 1;
     });
   });
-  let allPixels = document.querySelectorAll(".pixels");
+  let allPixels = document.querySelectorAll("#pixels");
   allPixels.forEach((pixel) => {
     pixel.addEventListener("pointerover", function () {
       if (isDrawing) {
-        pixel.classList.add("isClicked");
+        pixel.className = canvasColor;
+        pixel.style.opacity = 1;
       }
     });
   });
@@ -72,7 +76,21 @@ function makeSquarePaintPalette() {
   for (let i = 0; i < canvasWidth / 97; i++) {
     palette = document.createElement("div");
     palette.classList.add("addSquares");
+    palette.classList.add(`_${i}`);
     palette.style.backgroundColor = colorArray[i];
     canvas.append(palette);
   }
+}
+
+function changeDrawColor() {
+  let returnElement;
+  let colorSquares = document.querySelectorAll(".addSquares");
+  colorSquares.forEach((color) => {
+    color.addEventListener("click", (e) => {
+      if (null) {
+        return;
+      }
+      canvasColor = e.target.classList[1];
+    });
+  });
 }

@@ -1,6 +1,8 @@
 body {
   background-image: url("/photos/background_HK.png");
   overflow: hidden;
+
+  cursor: url("/photos/pencil2.png") 5 27, pointer;
 }
 
 #main-container {
@@ -31,16 +33,11 @@ body {
   margin-top: 3.4em;
 }
 
-.pixels {
+#pixels {
   width: 15px;
   height: 15px;
   border: 0.1px solid grey;
   opacity: 0.3;
-}
-
-.isClicked {
-  background-color: black;
-  opacity: 1;
 }
 
 .addSquares {
@@ -48,6 +45,67 @@ body {
   height: 45px;
   border: 3px solid rgb(77, 111, 148);
   opacity: 1;
-  margin-top:1.5em;
-  margin-right: .14em;
+  margin-top: 1.5em;
+  margin-right: 0.14em;
+}
+/* Change Colors of Drawing Tool */
+._0 {
+  background-color: black;
+  opacity: 1;
+}
+._1 {
+  background-color: red;
+  opacity: 1;
+}
+._2 {
+  background-color: rgb(255, 69, 0);
+  opacity: 1;
+}
+._3 {
+  background-color: orange;
+  opacity: 1;
+}
+._4 {
+  background-color: rgb(255, 170, 51);
+  opacity: 1;
+}
+._5 {
+  background-color: yellow;
+  opacity: 1;
+}
+._6 {
+  background-color: rgb(154, 205, 50);
+  opacity: 1;
+}
+._7 {
+  background-color: green;
+  opacity: 1;
+}
+._8 {
+  background-color: rgb(8, 143, 143);
+  opacity: 1;
+}
+._9 {
+  background-color: blue;
+  opacity: 1;
+}
+._10 {
+  background-color: rgb(57, 100, 195);
+  opacity: 1;
+}
+._11 {
+  background-color: indigo;
+  opacity: 1;
+}
+._12 {
+  background-color: rgb(27, 10, 64);
+  opacity: 1;
+}
+._13 {
+  background-color: violet;
+  opacity: 1;
+}
+._14 {
+  background-color: rgb(203, 195, 227);
+  opacity: 1;
 }

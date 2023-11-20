@@ -42,7 +42,7 @@ function makeGridLines() {
     }
   }
 }
-
+//Creates click and drag effect; Also allows eraser tool to work correctly//Works with Window listeners
 function makePixels() {
   let clickedPixels = document.querySelectorAll("#pixels");
   clickedPixels.forEach((pixel) => {
@@ -93,7 +93,6 @@ function makeSquarePaintPalette() {
     palette = document.createElement("div");
     palette.classList.add("addSquares");
     palette.classList.add(`_${i}`);
-    palette.style.backgroundColor = colorArray[i];
     canvas.append(palette);
   }
 }

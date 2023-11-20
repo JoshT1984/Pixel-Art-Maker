@@ -2,7 +2,8 @@ body {
   background-image: url("/photos/background_HK.png");
   overflow: hidden;
 
-  cursor: url("/photos/pencil2.png") 5 27, pointer;
+  cursor: url("/photos/pencil2.png") 5 27, crosshair;
+  /* cursor: url("/toolbar/project_eraser.png") 15 60, crosshair; */
 }
 
 #main-container {
@@ -51,61 +52,84 @@ body {
 /* Change Colors of Drawing Tool */
 ._0 {
   background-color: black;
-  opacity: 1;
 }
 ._1 {
   background-color: red;
-  opacity: 1;
 }
 ._2 {
   background-color: rgb(255, 69, 0);
-  opacity: 1;
 }
 ._3 {
   background-color: orange;
-  opacity: 1;
 }
 ._4 {
   background-color: rgb(255, 170, 51);
-  opacity: 1;
 }
 ._5 {
   background-color: yellow;
-  opacity: 1;
 }
 ._6 {
   background-color: rgb(154, 205, 50);
-  opacity: 1;
 }
 ._7 {
   background-color: green;
-  opacity: 1;
 }
 ._8 {
   background-color: rgb(8, 143, 143);
-  opacity: 1;
 }
 ._9 {
   background-color: blue;
-  opacity: 1;
 }
 ._10 {
   background-color: rgb(57, 100, 195);
-  opacity: 1;
 }
 ._11 {
   background-color: indigo;
-  opacity: 1;
 }
 ._12 {
   background-color: rgb(27, 10, 64);
-  opacity: 1;
 }
 ._13 {
   background-color: violet;
-  opacity: 1;
 }
 ._14 {
   background-color: rgb(203, 195, 227);
+}
+
+._15 {
+  background-color: white;
   opacity: 1;
+}
+
+#paletteImg {
+  margin-left: 46.7em;
+  border: 2px solid rgb(77, 111, 148);
+  margin-top: -37.8em;
+  width: 2.8em;
+  height: 2.8em;
+}
+
+.pencilTool {
+  width: 30.5px;
+  height: 0;
+  margin-top: -38em;
+  /* pointer-events: none; */
+}
+
+.eraserTool {
+  width: 0;
+  height: 0;
+  margin-top: -38.5em;
+  margin-left: 3em;
+  /* pointer-events: none; */
+}
+
+#draw {
+  width: 3em;
+  height: 3em;
+}
+
+#erase {
+  width: 4em;
+  height: 4em;
 }

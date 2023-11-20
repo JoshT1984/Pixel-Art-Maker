@@ -5,6 +5,9 @@ insideContainer.append(canvas);
 let canvasWidth = canvas.offsetWidth * 1.81;
 let canvasHeight = canvas.offsetHeight * 1.81;
 let canvasColor = "_0";
+let eraser = "_15";
+let isPencil = true;
+const docStyle = document.body.style;
 
 let isDrawing = false;
 window.addEventListener("pointerdown", () => {
@@ -20,8 +23,13 @@ function render() {
   makeGridLines();
   makePixels();
   makeSquarePaintPalette();
+  currentPaintPalette();
   changeDrawColor();
+  setCurrentColor();
+  createTools();
+  changeTool();
 }
+
 function makeGridLines() {
   let pixelGrid;
 
@@ -39,16 +47,24 @@ function makePixels() {
   let clickedPixels = document.querySelectorAll("#pixels");
   clickedPixels.forEach((pixel) => {
     pixel.addEventListener("mousedown", () => {
-      pixel.className = canvasColor;
-      pixel.style.opacity = 1;
+      if (isPencil) {
+        pixel.className = canvasColor;
+        pixel.style.opacity = 1;
+      } else if (!isPencil && isDrawing) {
+        pixel.className = eraser;
+        pixel.style.opacity = 0.3;
+      }
     });
   });
   let allPixels = document.querySelectorAll("#pixels");
   allPixels.forEach((pixel) => {
     pixel.addEventListener("pointerover", function () {
-      if (isDrawing) {
+      if (isDrawing && isPencil) {
         pixel.className = canvasColor;
         pixel.style.opacity = 1;
+      } else if (!isPencil && isDrawing) {
+        pixel.className = eraser;
+        pixel.style.opacity = 0.3;
       }
     });
   });
@@ -83,7 +99,7 @@ function makeSquarePaintPalette() {
 }
 
 function changeDrawColor() {
-  let returnElement;
+  //Changes Drawing Color
   let colorSquares = document.querySelectorAll(".addSquares");
   colorSquares.forEach((color) => {
     color.addEventListener("click", (e) => {
@@ -92,5 +108,65 @@ function changeDrawColor() {
       }
       canvasColor = e.target.classList[1];
     });
+  });
+}
+
+function currentPaintPalette() {
+  //Creates Paint Palette Top/Right
+  const paletteImage = document.createElement("img");
+  paletteImage.src = "../toolbar/square.png";
+  let currPalette = document.createElement("div");
+  currPalette.className = canvasColor;
+  currPalette.setAttribute("id", "paletteImg");
+  currPalette.appendChild(paletteImage);
+  canvas.append(currPalette);
+}
+
+function setCurrentColor() {
+  //Changes Palette Color
+  let color = document.querySelector("#paletteImg");
+  window.addEventListener("click", () => {
+    color.className = canvasColor;
+  });
+}
+
+function createTools() {
+  let pencilDiv = document.createElement("div");
+  let eraserDiv = document.createElement("div");
+  let pencilImage = document.createElement("img");
+  let eraserImage = document.createElement("img");
+
+  pencilImage.src = "../toolbar/project_pencil_toolbar.png";
+  pencilDiv.className = "pencilTool";
+  pencilImage.setAttribute("id", "draw");
+  pencilImage.setAttribute("draggable", false);
+
+  eraserImage.src = "../toolbar/project_eraser.png";
+  eraserDiv.className = "eraserTool";
+  eraserImage.setAttribute("id", "erase");
+  eraserImage.setAttribute("draggable", false);
+
+  pencilDiv.appendChild(pencilImage);
+  eraserDiv.appendChild(eraserImage);
+
+  canvas.append(pencilDiv);
+  canvas.append(eraserDiv);
+}
+
+function changeTool() {
+  isPencil = true;
+  let pencil = document.querySelector("#draw");
+  let eraser = document.querySelector("#erase");
+
+  pencil.addEventListener("click", (e) => {
+    isPencil = true;
+    canvasColor = "_0";
+    // docStyle.cursor = `url(../toolbar/project_pencil_toolbar.png), default`;
+  });
+
+  eraser.addEventListener("click", (e) => {
+    isPencil = false;
+    canvasColor = eraser;
+    // docStyle.cursor = `url(../toolbar/project_eraser.png), default`;
   });
 }
